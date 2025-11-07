@@ -1,27 +1,10 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize'
 
-const isProd = process.env.NODE_ENV === 'production';
+console.log(process.env.DATABASE_URL)
 
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
 	dialect: 'postgres',
-	logging: false,
-	dialectOptions: isProd
-		? {
-				ssl: {
-					require: true,
-					rejectUnauthorized: false,
-				},
-		  }
-		: {},
-});
+	logging: false
+})
 
-export default sequelize;
-
-//import { Sequelize } from 'sequelize';
-
-//const sequelize = new Sequelize(process.env.DATABASE_URL, {
-//dialect: 'postgres',
-//logging: false,
-//});
-
-//export default sequelize;
+export default sequelize
